@@ -1,7 +1,0 @@
-[package]
-name = "std-hash"
-version = "0.1.0"
-authors = ["jacky.li <jacky.li@accenture.com>"]
-edition = "2018"
-
-[dependencies]
