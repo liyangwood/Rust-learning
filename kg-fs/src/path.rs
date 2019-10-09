@@ -10,15 +10,15 @@ pub fn pwd()->String{
   return rs.to_str().expect("error in path.rs").to_string();
 }
 
-#[cfg(test)]
-mod tests {
-  use super::*;
+// #[cfg(test)]
+// mod tests {
+//   use super::*;
 
-    #[test]
-    fn it_works() {
-      let path = pwd();
-      println!("{}", path);
-      // assert_eq!("", path);
+//     #[test]
+//     fn it_works() {
+//       let path = pwd();
+//       println!("{}", path);
+//       // assert_eq!("", path);
 
-    }
-}
+//     }
+// }
