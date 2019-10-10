@@ -1,9 +1,8 @@
-// use error::{Error, ErrorKind, Result};
+use crate::error::{Error, ErrorKind, Result};
 use std::collections::{HashMap, HashSet};
 use std::fs::{create_dir, create_dir_all, read_dir, remove_dir_all, Metadata};
 use std::path::{Path, PathBuf};
 use std::time::SystemTime;
-use std::io;
 
 ///	Options and flags which can be used to configure how a file will be  copied  or moved.
 #[derive(Clone)]
@@ -455,7 +454,7 @@ pub struct LsResult {
 ///
 /// create("dir", false); // create directory
 /// ```
-fn create_by_path<P>(path: P, erase: bool) -> io::Result<()>
+fn create_by_path<P>(path: P, erase: bool) -> Result<()>
 where
     P: AsRef<Path>,
 {
@@ -463,11 +462,12 @@ where
         remove(&path)?;
     }
     else if path.as_ref().exists() {
-        panic!("path [{}] already exists, set erase as true to force replace path.", path.as_ref().display());
+        let msg = format!("path [{}] already exists, set erase as true to force replace path.", path.as_ref().display());
+        err!(&msg, ErrorKind::AlreadyExists);
     }
     Ok(create_dir(&path)?)
 }
-pub fn create<P>(path: P, erase: bool) -> io::Result<()>
+pub fn create<P>(path: P, erase: bool) -> Result<()>
 where
     P: AsRef<Path>,
 {
@@ -1360,19 +1360,18 @@ where
 //     Ok(result)
 // }
 
-// / Removes directory.
-// /
-// / # Example
-// / ```rust,ignore
-// / extern crate fs_extra;
-// / use fs_extra::dir::remove;
-// /
-// / remove("source/dir1"); // remove dir1
-// / ```
-
-pub fn remove<P: AsRef<Path>>(path: P) -> io::Result<()> {
+/// Removes directory.
+///
+/// # Example
+/// ```rust,ignore
+/// extern crate fs_extra;
+/// use fs_extra::dir::remove;
+///
+/// remove("source/dir1"); // remove dir1
+/// ```
+pub fn remove<P: AsRef<Path>>(path: P) -> Result<()> {
     if path.as_ref().exists() {
-        return remove_dir_all(path);
+        return Ok(remove_dir_all(path)?)
     } else {
         Ok(())
     }

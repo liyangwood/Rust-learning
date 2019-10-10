@@ -1,4 +1,4 @@
-use error::{Error, ErrorKind, Result};
+use crate::error::{Error, ErrorKind, Result};
 use std;
 use std::fs::{remove_file, File};
 use std::io::{Read, Write};
@@ -327,7 +327,7 @@ where
 /// println!("{}", file_content);
 ///
 /// ```
-pub fn read_to_string<P>(path: P) -> Result<String>
+pub fn read_file<P>(path: P) -> Result<String>
 where
     P: AsRef<Path>,
 {
@@ -366,7 +366,7 @@ where
 /// write_all("foo.txt", "conents" )?; // Create file foo.txt and send content inside
 ///
 /// ```
-pub fn write_all<P>(path: P, content: &str) -> Result<()>
+pub fn write_file<P>(path: P, content: &str) -> Result<()>
 where
     P: AsRef<Path>,
 {
