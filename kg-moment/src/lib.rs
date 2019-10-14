@@ -1,14 +1,14 @@
-pub mod time;
+pub mod moment;
 
 
 #[cfg(test)]
 mod tests {
-    use super::time;
+    use super::*;
 
     #[test]
     fn it_works() {
         // println!("{:#?}", now());
-        let t = time::now();
-        println!("{:#?}", t.year);
+        let t = moment::now();
+        println!("{:#?}", t.get_timestamp());
     }
 }
