@@ -97,9 +97,9 @@ impl Moment {
             .replace("s", &self.old_tm.tm_sec.to_string())
     }
 
-    pub fn get_timestamp(&self) -> i64 {
+    pub fn get_timestamp(&self) -> time::Timespec {
         let rs:time::Timespec = self.old_tm.to_timespec();
-        
+        return rs;
     }
 } 
 
