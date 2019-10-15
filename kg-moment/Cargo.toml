@@ -3,6 +3,9 @@ name = "kg_moment"
 version = "0.0.1"
 authors = ["jacky.li <liyangwood@gmail.com>"]
 edition = "2018"
+description="Same api and usage with momentjs."
+license = "MIT"
+repository = "https://github.com/liyangwood/Rust-learning/tree/master/kg-moment"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
